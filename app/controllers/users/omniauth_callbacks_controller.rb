@@ -2,6 +2,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def spotify
     @user = User.from_omniauth(request.env["omniauth.auth"])
     @user.update(auth_hash: request.env["omniauth.auth"])
+    Playlist.populate_from_user(@user)
 
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
