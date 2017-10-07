@@ -1,5 +1,9 @@
 .container
-  h1 Visitors#index
+  h1 Spotify TrackListr
+  p.lead.small &copy; 2017 - ZDN Enterprises, LLC. - Tempe, Arizona
+  p.lead 
+    ' Login with your spotify account to see a list of your playlists, then
+    | send a tracklist to your email!
   - unless current_user
     = link_to 'login', user_spotify_omniauth_authorize_path
   - if current_user
@@ -22,3 +26,4 @@
                 method: :post do |f|
                 = f.hidden_field :id, value: p.spotify_id
                 = f.submit "Email Track List", class: 'btn btn-link'
+
