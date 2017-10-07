@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'playlists/send_mail'
+
   root to: 'visitors#index'
   get 'visitors/index'
 

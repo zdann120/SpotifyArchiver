@@ -10,9 +10,15 @@
           th.table-inverse Playlist ID
           th Playlist Name
           th Owner
+          th
       tbody
         - current_user.playlists.each do |p|
           tr
             td.table-inverse = p.spotify_id
             td = p.name
             td = p.owner_name
+            td 
+              = simple_form_for :playlist, url: playlists_send_mail_path,
+                method: :post do |f|
+                = f.hidden_field :id, value: p.spotify_id
+                = f.submit "Email Track List", class: 'btn btn-link'
