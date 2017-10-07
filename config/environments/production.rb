@@ -92,10 +92,10 @@ Rails.application.configure do
 end
 
 ActionMailer::Base.smtp_settings = {
-  :user_name => ENV['SENDGRID_USERNAME'],
-  :password => ENV['SENDGRID_PASSWORD'],
+  :user_name => ENV['POSTMARK_API_TOKEN'],
+  :password => ENV['POSTMARK_API_TOKEN'],
   :domain => 'zdnenterprises.com',
-  :address => 'smtp.sendgrid.net',
+  :address => 'smtp.postmarkapp.com',
   :port => 587,
   :authentication => :plain,
   :enable_starttls_auto => true
