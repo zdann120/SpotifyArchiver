@@ -8,10 +8,20 @@
       | send a tracklist to your email!
     = link_to 'login', user_spotify_omniauth_authorize_path
   - if current_user
-    h4.text-muted
-      | Logged in with Spotify Account
-      pre == "username: #{current_user.uid}<br>email: #{current_user.email}"
-    = link_to 'logout', destroy_user_session_path, method: :delete    
+    .row
+      .col-md-6
+        h4.text-muted
+          | Logged in with Spotify Account
+          pre == "username: #{current_user.uid}<br>email: #{current_user.email}"
+        = link_to 'logout', destroy_user_session_path, method: :delete    
+      .col-md-6
+        h5.text-muted Update Email
+        = simple_form_for current_user, url: update_user_path,
+          method: :post do |f|
+
+          = f.input :email, label: false
+          = f.submit 'Submit', class: 'btn btn-secondary'
+    hr
     table.table
       thead
         tr
