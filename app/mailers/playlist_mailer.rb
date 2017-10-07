@@ -5,12 +5,12 @@ class PlaylistMailer < ApplicationMailer
   #
   #   en.playlist_mailer.weekly.subject
   #
-  def weekly(playlist)
+  def track_listing(playlist)
     @playlist = playlist
     @user = playlist.user
 
     mail to: @user.email,
-      subject: "Weekly track listing: #{@playlist.name}",
+      subject: "Track listing: #{@playlist.name}",
       from: 'tracks@zdnenterprises.com'
   end
 end
