@@ -1,12 +1,16 @@
 .container
   h1 Spotify TrackListr
   p.lead.small &copy; 2017 - ZDN Enterprises, LLC. - Tempe, Arizona
-  p.lead 
-    ' Login with your spotify account to see a list of your playlists, then
-    | send a tracklist to your email!
+  
   - unless current_user
+    p.lead 
+      ' Login with your spotify account to see a list of your playlists, then
+      | send a tracklist to your email!
     = link_to 'login', user_spotify_omniauth_authorize_path
   - if current_user
+    h4.text-muted
+      | Logged in with Spotify Account
+      pre == "username: #{current_user.uid}<br>email: #{current_user.email}"
     = link_to 'logout', destroy_user_session_path, method: :delete    
     table.table
       thead
