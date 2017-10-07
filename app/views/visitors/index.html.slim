@@ -1,2 +1,18 @@
-h1 Visitors#index
-p Find me in app/views/visitors/index.html.slim
+.container
+  h1 Visitors#index
+  - unless current_user
+    = link_to 'login', user_spotify_omniauth_authorize_path
+  - if current_user
+    = link_to 'logout', destroy_user_session_path, method: :delete    
+    table.table
+      thead
+        tr
+          th.table-inverse Playlist ID
+          th Playlist Name
+          th Owner
+      tbody
+        - current_user.playlists.each do |p|
+          tr
+            td.table-inverse = p.spotify_id
+            td = p.name
+            td = p.owner_name
