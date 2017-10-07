@@ -1,0 +1,15 @@
+h1 Weekly Track Listing
+h2 Playlist: #{@playlist.name}
+h2 Send date: #{Time.zone.now.strftime('%m/%d/%Y at %I:%M %p')}
+table
+  thead
+    tr
+      th Track Name
+      th Artist
+      th Duration
+  tbody
+    - @playlist.from_spotify.tracks.each do |track|
+      tr
+        td = track.name
+        td = track.artists.map{|a| a.name}.join(', ')
+        td = ((track.duration_ms / 1000.0)/60).round(2)
